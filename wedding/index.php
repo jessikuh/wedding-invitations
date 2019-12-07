@@ -1,5 +1,5 @@
 <?php $title = 'Stamos Wedding Invitation';
-include 'layouts/header.php' ?>
+include 'layouts/header.php'; ?>
 
 <div class="index">
 

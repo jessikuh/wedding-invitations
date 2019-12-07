@@ -1,4 +1,5 @@
 <?php
+
 include_once('partials/db.php');
 
 if (isset($_POST['email'])) {

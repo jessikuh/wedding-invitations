@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_HOST: host.docker.internal:3306
+      MYSQL_USER: DB_USERNAME
+      MYSQL_PASSWORD: DB_PASSWORD
+      MYSQL_DATABASE: DB_DATABASE
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    volumes:
+      - ./wedding:/var/www/html
+    ports:
+      - '8080:80'
+    networks:
+      - backend
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./wedding:/var/www/html
+    env_file: '.env'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
